@@ -1,24 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import GoodsInteface from "./components/interface/GoodsInterface";
+import GoodsItem from './components/items/GoodsItem';
+import GoodsForm from './components/forms/GoodsForm';
+import GoodsList from './components/list/GoodsList';
 
 function App() {
+
+  const [goods, setGoods] = useState<GoodsInteface[]>([]);
+
+  const addGood = (good: GoodsInteface) => {
+    const newGood: GoodsInteface = {
+       id: Date.now(),
+      ...good,
+    };
+
+    setGoods(prevGoods => [...prevGoods, newGood]);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Second-Hand Goods</h1>
+      <GoodsForm onAdd={addGood} />
+      <GoodsList goods={goods} />
     </div>
   );
 }
