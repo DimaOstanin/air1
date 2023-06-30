@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './App.css';
+
 import {GoodsType} from "../../model/GoodsType";
 import GoodsForm from '../forms/GoodsForm';
 import GoodsList from '../list/GoodsList';
