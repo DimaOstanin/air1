@@ -39,7 +39,7 @@ export const NavigatorMobile: React.FC<NavigatorProps> = ({ routes }) => {
               <Typography sx={{ width: "100%", textAlign: "center", fontSize: "1.5em" }}>
                   {getTitle()}
               </Typography>
-              <Drawer open={flOpen} onClose={toggleOpen} anchor="left">
+              <Drawer open={flOpen} onClose={toggleOpen} anchor="right">
                   <List>
                       {getListItems()}
                   </List>

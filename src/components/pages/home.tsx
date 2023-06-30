@@ -11,7 +11,7 @@ export const Home: React.FC = () => {
         ברוכים הבאים לאיירסופט1
       </Typography>
       <Typography variant="body1">
-        This is a basic example of a Home component using React, TypeScript, and Material-UI.
+      כאן תוכלו למצוא מידע על איירסופט
       </Typography>
     </div>
   );
