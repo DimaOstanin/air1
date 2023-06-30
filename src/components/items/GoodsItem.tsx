@@ -1,23 +1,35 @@
 import React from 'react';
-import GoodsInteface from "../interface/GoodsInterface";
+import {GoodsType} from "../../model/GoodsType";
+import { ListItem, ListItemText, ListItemAvatar, Avatar, Typography } from '@mui/material';
 
 
 
 interface GoodsItemProps {
-  good: GoodsInteface;
+  good: GoodsType;
 }
 
 const GoodsItem: React.FC<GoodsItemProps> = ({ good }) => {
-  return (
-    <div>
-      <h3>{good.name}</h3>
-      <p>Price: {good.price}</p>
-      <p>Company: {good.company}</p>
-      <p>Condition: {good.condition}</p>
-      <p>City: {good.city}</p>
-      <img src={good.image} alt={good.name} />
-    </div>
-  );
+    return (
+    <ListItem>
+        <ListItemAvatar>
+            <Avatar src={good.image} alt={good.name} />
+        </ListItemAvatar>
+        <ListItemText
+            primary={good.name}
+            secondary={<>
+                <Typography component="span" variant="body2" color="textPrimary">
+                    Price: ${good.price}
+                </Typography>
+                <br />
+                Company: {good.company}
+                <br />
+                Condition: {good.condition}
+                <br />
+                City: {good.city}
+            </>} />
+    </ListItem>
+);
 };
+
 
 export default GoodsItem;

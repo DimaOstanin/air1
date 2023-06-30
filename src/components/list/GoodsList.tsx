@@ -1,29 +1,32 @@
 import React from 'react';
+import { List, ListItem,  Typography } from '@mui/material';
+
 import GoodsItem from '../items/GoodsItem';
-import GoodsInteface from "../interface/GoodsInterface";
+import {GoodsType} from "../../model/GoodsType";
 
 
 interface GoodsListProps {
-  goods: GoodsInteface[];
+  goods: GoodsType[];
 }
 
 const GoodsList: React.FC<GoodsListProps> = ({ goods }) => {
-  return (
-    <div>
-      <h2>Goods List</h2>
-      {goods.length === 0 ? (
-        <p>No goods available.</p>
-      ) : (
-        <ul>
-          {goods.map(good => (
-            <li key={good.id}> 
-              <GoodsItem good={good} />
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
-  );
-};
+    
+        return (
+            <div>
+              <Typography variant="h4">Goods List</Typography>
+              {goods == null ? (
+                <Typography variant="body1">No goods available.</Typography>
+              ) : (
+                <List>
+                  {goods.map(goods => (
+                    <ListItem key={goods.id}>
+                      <GoodsItem good={goods} />
+                    </ListItem>
+                  ))}
+                </List>
+              )}
+            </div>
+          );
+        };
 
 export default GoodsList;

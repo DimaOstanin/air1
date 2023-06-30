@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
-import GoodsInteface from "../interface/GoodsInterface";
+import {GoodsType} from "../../model/GoodsType";
+import { TextField, Button, Typography} from '@mui/material';
+import RandomGoodsCreator from '../../utils/RandomGoodsCreator';
+
 
 interface GoodsFormProps {
-  onAdd: (goods: GoodsInteface) => void;
+  onAdd: (goods: GoodsType) => void;
 }
 
 const GoodsForm: React.FC<GoodsFormProps> = ({ onAdd }) => {
@@ -62,33 +65,52 @@ const GoodsForm: React.FC<GoodsFormProps> = ({ onAdd }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <h2>Add Goods</h2>
-      <div>
-        <label htmlFor="name">Name:</label>
-        <input type="text" id="name" value={name} onChange={handleNameChange} />
-      </div>
-      <div>
-        <label htmlFor="price">Price:</label>
-        <input type="number" id="price" value={price} onChange={handlePriceChange} />
-      </div>
-      <div>
-        <label htmlFor="image" >Image URL:</label>
-        <input type="text" id="image" value={image} onChange={handleImageChange} />
-      </div>
-      <div>
-        <label htmlFor="company">Company:</label>
-        <input type="text" id="company" value={company} onChange={handleCompanyChange} />
-      </div>
-      <div>
-        <label htmlFor="condition">Condition:</label>
-        <input type="text" id="condition" value={condition} onChange={handleConditionChange} />
-      </div>
-      <div>
-        <label htmlFor="city">City:</label>
-        <input type="text" id="city" value={city} onChange={handleCityChange} />
-      </div>
-      <button type="submit">Add</button>
+      <Typography variant="h4">Add Goods</Typography>
+      <TextField
+        label="Name"
+        value={name}
+        onChange={event => setName(event.target.value)}
+        required
+      />
+      <br />
+      <TextField
+        label="Price"
+        type="number"
+        value={price}
+        onChange={event => setPrice(event.target.value)}
+        required
+      />
+      <br />
+      <TextField
+        label="Image URL"
+        value={image}
+        onChange={event => setImage(event.target.value)}
+      />
+      <br />
+      <TextField
+        label="Company"
+        value={company}
+        onChange={event => setCompany(event.target.value)}
+      />
+      <br />
+      <TextField
+        label="Condition"
+        value={condition}
+        onChange={event => setCondition(event.target.value)}
+      />
+      <br />
+      <TextField
+        label="City"
+        value={city}
+        onChange={event => setCity(event.target.value)}
+      />
+      <br />
+      <Button type="submit" variant="contained" color="primary">
+        Add
+      </Button>
+      
     </form>
+    
   );
 };
 

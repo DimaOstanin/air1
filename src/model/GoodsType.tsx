@@ -1,4 +1,5 @@
-interface GoodsInteface {
+export type GoodsType = {
+   
     id?: number;
     name: string;
     price: number;
@@ -8,4 +9,4 @@ interface GoodsInteface {
     city: string;
   }
 
-  export default GoodsInteface;
+ 
