@@ -1,12 +1,15 @@
 export type GoodsType = {
    
-    id?: number;
+    id: string;
     name: string;
     price: number;
+    category:string;
     image: string;
     company: string;
     condition: string;
     city: string;
+    discription: string;
+    
   }
 
  

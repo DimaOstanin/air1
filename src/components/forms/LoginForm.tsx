@@ -18,10 +18,10 @@ function Copyright(props: any) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
-      <Link color="inherit" href="https://tel-ran.com">
-      tel-ran.com
+      <Link color="inherit" href=" ">
+      DIMA OSTANIN
       </Link>{' '}
-      {new Date().getFullYear()}
+      {2022}
       {'.'}
     </Typography>
   );

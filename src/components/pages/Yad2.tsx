@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
 
 import {GoodsType} from "../../model/GoodsType";
-import GoodsForm from '../forms/GoodsForm';
+import {GoodsForm}
+from '../forms/GoodsForm';
 import GoodsList from '../list/GoodsList';
-import RandomGoodsCreator from '../../utils/RandomGoodsCreator';
+import {RandomGoodsCreator} from '../../utils/RandomGoodsCreator';
+import { useSelector } from 'react-redux';
 
 export const Yad2: React.FC = () => {
-
+  const authUser:string = useSelector<any,string>(state=>state.auth.authenticated );
   const [goods, setGoods] = useState<GoodsType[]>([]);
 
   const addGood = (good: GoodsType) => {
     const newGood: GoodsType = {
-       id: Date.now(),
+       id:  Date.now(),
       ...good,
     };
 

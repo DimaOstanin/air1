@@ -23,7 +23,7 @@ import { CodeType } from "../../model/CodeType";
         
     }
     return <Box>
-        <Paper>
+        <Paper >
         <LoginForm submitFn={loginSubmit} code={code}/>
         
         </Paper>

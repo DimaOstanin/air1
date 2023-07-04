@@ -27,9 +27,10 @@ function App() {
           const logoutRoute: RouteType |undefined = layoutConfig.routes
           .find(r => r.path.includes('logout'))
           logoutRoute!.label = authUser;
-          return layoutConfig.routes.filter(r => (!authUser && !r.flAuth ) ||
-          (authUser.includes('admin') && r.flAdmin) ||
-          (authUser && !r.flAuth && !r.flAdmin ))
+        //   return layoutConfig.routes.filter(r => (!authUser && !r.flAuth ) ||
+        //   (authUser.includes('admin') && r.flAdmin) ||
+        //   (authUser && !r.flAuth && !r.flAdmin ))
+         return layoutConfig.routes;
       }
       setRoutes(getRoutes());
   }, [authUser]);
