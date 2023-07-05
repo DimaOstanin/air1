@@ -12,7 +12,7 @@ export function createRandomGoods(): GoodsType {
     const category = getElement(goodsCategory); 
     const condition = getElement(goodsCondition);
     const price = getRandomNumber(minPrice, maxPrice);
-    const image = "https://picsum.photos/200/300";
+    const image = "https://t3.ftcdn.net/jpg/03/21/62/56/360_F_321625657_rauGwvaYjtbETuwxn9kpBWKDYrVUMdB4.jpg";
     const city = getElement(cities);
     const goods: GoodsType = {
         id, name, price, image, category,

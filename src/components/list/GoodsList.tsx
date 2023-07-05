@@ -1,7 +1,7 @@
 import React from 'react';
-import { List, ListItem,  Typography } from '@mui/material';
+import { Box, Grid, List, ListItem,  Typography } from '@mui/material';
 
-import GoodsItem from '../items/GoodsItem';
+import {GoodsItem} from '../items/GoodsItem';
 import {GoodsType} from "../../model/GoodsType";
 
 
@@ -12,20 +12,21 @@ interface GoodsListProps {
 const GoodsList: React.FC<GoodsListProps> = ({ goods }) => {
     
         return (
-            <div>
+            <Box>
               <Typography variant="h4">Goods List</Typography>
               {goods == null ? (
                 <Typography variant="body1">No goods available.</Typography>
               ) : (
-                <List>
+                <Grid container spacing={1}  justifyContent="center" >
                   {goods.map(goods => (
-                    <ListItem key={goods.id}>
-                      <GoodsItem good={goods} />
-                    </ListItem>
+                    
+                    <Grid item xs={9} sm={5} m={3} lg={2} key={goods.id}>
+                      <GoodsItem  good={goods} />
+                    </Grid>
                   ))}
-                </List>
+                </Grid>
               )}
-            </div>
+            </Box>
           );
         };
 
