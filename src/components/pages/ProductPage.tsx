@@ -2,8 +2,8 @@ import React from 'react';
 import {GoodsType} from "../../model/GoodsType";
 import { ListItem, ListItemText, ListItemAvatar, Avatar, Typography, Paper, Grid, ImageListItem, Button, Card, CardActions, CardContent, CardMedia, Box } from '@mui/material';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-
-
+import { useParams } from 'react-router-dom';
+  
 interface GoodsItemProps {
   good: GoodsType;
 }
@@ -41,14 +41,6 @@ export  const GoodsItem: React.FC<GoodsItemProps> = ({ good }) => {
             </Typography>
           </CardContent>
           <CardActions>
-          <Typography component="span" variant="h3" color="textPrimary">
-            שיטוף מוצר
-            </Typography>
-            <Button size="large">Share</Button>
-            <Button size="large">What's Up</Button>
-            <Button size="large">Telegram</Button>
-          </CardActions>
-          <CardActions>
           <Typography component="span" variant="h3" color="textPrimary" >
             צור בשר
             </Typography>
@@ -56,6 +48,15 @@ export  const GoodsItem: React.FC<GoodsItemProps> = ({ good }) => {
             <Button size="large">What's Up</Button>
             <Button size="large">Telegram</Button>
           </CardActions>
+          <CardActions>
+          <Typography component="span" variant="h3" color="textPrimary">
+            שיטוף מוצר
+            </Typography>
+            <Button size="large">Share</Button>
+            <Button size="large">What's Up</Button>
+            <Button size="large">Telegram</Button>
+          </CardActions>
+          
         </Card>
         </Box>
       );

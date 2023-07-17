@@ -7,7 +7,7 @@ export const layoutConfig: NavigatorProps = {
         { label: 'עלינו', path: '/About',  flAuth: true, flAdmin: false },
          {label: 'Logout', path: '/logout', flAuth: true},
          {label: 'Login', path: '/login', flAuth: false}
-
+         
     ]
 
 }

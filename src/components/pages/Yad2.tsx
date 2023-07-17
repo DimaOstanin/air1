@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
-
 import {GoodsType} from "../../model/GoodsType";
-import {GoodsForm}
-from '../forms/GoodsForm';
+import {GoodsForm}from '../forms/GoodsForm';
 import GoodsList from '../list/GoodsList';
 import {RandomGoodsCreator} from '../../utils/RandomGoodsCreator';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { goodsActions } from '../../redux/goodsSlice';
 
 export const Yad2: React.FC = () => {
-  const authUser:string = useSelector<any,string>(state=>state.auth.authenticated );
+  
   const [goods, setGoods] = useState<GoodsType[]>([]);
+  const dispatch = useDispatch<any>();
 
+  
   const addGood = (good: GoodsType) => {
     const newGood: GoodsType = {
        id:  Date.now(),
@@ -26,7 +27,7 @@ export const Yad2: React.FC = () => {
   return (
     <div>
       <h1>Second-Hand Goods</h1>
-      <GoodsForm onAdd={addGood} />
+      <GoodsForm onAdd={(goods) => {dispatch(goodsActions.addGoods(goods))}} />
       <RandomGoodsCreator onGenerate={generateRandomGoods} />
       <GoodsList goods={goods} />
     </div>

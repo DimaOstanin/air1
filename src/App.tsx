@@ -5,7 +5,7 @@ import { layoutConfig } from './config/layout-config';
 import { useEffect, useState } from 'react';
 import { RouteType } from '../src/model/RouteType';
 import { useSelector, useDispatch } from 'react-redux';
-
+import { useParams } from 'react-router-dom';
 import { NavigatorDispatch } from './components/navigators/NavigatorDispatch';
 
 
@@ -14,6 +14,7 @@ import { Yad2 } from './components/pages/Yad2';
 import { Login } from './components/pages/Login';
 import { Logout } from './components/pages/Logout';
 import { About } from './components/pages/About';
+import { NoFoundPAge } from './components/pages/NoFoundPage';
 
 
 
@@ -27,6 +28,7 @@ function App() {
           const logoutRoute: RouteType |undefined = layoutConfig.routes
           .find(r => r.path.includes('logout'))
           logoutRoute!.label = authUser;
+          console.log(authUser)
         //   return layoutConfig.routes.filter(r => (!authUser && !r.flAuth ) ||
         //   (authUser.includes('admin') && r.flAdmin) ||
         //   (authUser && !r.flAuth && !r.flAdmin ))
@@ -41,10 +43,12 @@ return <BrowserRouter>
          routes={routes}  />}>
             <Route index element={<Home/>}/>          
             <Route path='Yad2' element={<Yad2/>}/> 
+            <Route path='Yad2/:id' element={<Yad2/>}/>
             <Route path='About' element={<About/>}/>
             <Route path='login' element={<Login/>}/>
             <Route path='logout' element={<Logout/>}/>
-            
+            <Route path='logout' element={<Logout/>}/>
+            <Route path='*' element={<NoFoundPAge />}/>
             
         </Route>
             

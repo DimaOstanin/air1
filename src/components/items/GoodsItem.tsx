@@ -1,8 +1,8 @@
 import React from 'react';
 import {GoodsType} from "../../model/GoodsType";
-import { ListItem, ListItemText, ListItemAvatar, Avatar, Typography, Paper, Grid, ImageListItem, Button, Card, CardActions, CardContent, CardMedia } from '@mui/material';
+import { ListItem, ListItemText, ListItemAvatar, Avatar, Typography, Paper, Grid, ImageListItem, Button, Card, CardActions, CardContent, CardMedia, Link } from '@mui/material';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-
+import { ProductPage} from '../pages/ProductPage';
 
 interface GoodsItemProps {
   good: GoodsType;
@@ -16,18 +16,17 @@ export  const GoodsItem: React.FC<GoodsItemProps> = ({ good }) => {
         <Card sx={{ maxWidth: 345 }}>
           <CardMedia
             sx={{ height: 140 }}
-            image="/static/images/cards/contemplative-reptile.jpg"
+            image="https://t3.ftcdn.net/jpg/03/21/62/56/360_F_321625657_rauGwvaYjtbETuwxn9kpBWKDYrVUMdB4.jpg"
             title="green iguana"
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
             {good.name}
             </Typography>
-            <Typography component="span" variant="body2" color="textPrimary">
+            <Typography component="span" variant="h5" color="textPrimary">
             ₪{good.price}
             </Typography>
-            <>
-                    
+                <>
                     <br />
                     {good.condition} 
                     <br />
@@ -36,7 +35,16 @@ export  const GoodsItem: React.FC<GoodsItemProps> = ({ good }) => {
           </CardContent>
           <CardActions>
             <Button size="small">Share</Button>
-            <Button size="small">Learn More</Button>
+            <Button size="small">More</Button>
+            <Link
+                component="button"
+                 variant="body2"
+                 onClick={() => {
+                   <ProductPage good={good}/>
+                                }}
+                  >
+                Button Link
+            </Link>
           </CardActions>
           
         </Card>

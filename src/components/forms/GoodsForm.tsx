@@ -5,10 +5,10 @@ import goodsConfig from "../../config/goods-config.json";
 
 type GoodsFormProps = {
   onAdd: (goods: GoodsType) => boolean,
-  goodsUpdate?: GoodsType
+   goodsUpdate?: GoodsType
 }
 const initialGoods:GoodsType = {
-    id: 'a',
+    id: 0,
     name: '',
     price: 0,
     category:'',
