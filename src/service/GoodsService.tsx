@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 export function createRandomGoods(): GoodsType {
     const {goodsCategory,
           minPrice, maxPrice,goodsCondition,cities} = goodsConfig;
-    const id = "name" +  Date.now();
+    const id =  Date.now();
     const name = "מוצר" + Date.now();
     const comp = "חברה" + Date.now();
     const category = getElement(goodsCategory); 

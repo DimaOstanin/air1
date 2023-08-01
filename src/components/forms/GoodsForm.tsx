@@ -111,7 +111,7 @@ return <Box sx={{ marginTop: { sm: "25vh" } }}>
         <Grid item xs={8} sm={5} >
             <TextField type="text" required fullWidth label="שם החברה"
                 helperText="הזן את שם החברה" onChange={handlerCompany}
-                value={goods.name} 
+                value={goods.company} 
                 />
         </Grid>
         <Grid item xs={8} sm={5} >

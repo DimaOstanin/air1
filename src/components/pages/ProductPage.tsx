@@ -3,16 +3,42 @@ import {GoodsType} from "../../model/GoodsType";
 import { ListItem, ListItemText, ListItemAvatar, Avatar, Typography, Paper, Grid, ImageListItem, Button, Card, CardActions, CardContent, CardMedia, Box } from '@mui/material';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { useParams } from 'react-router-dom';
-  
-interface GoodsItemProps {
-  good: GoodsType;
-}
+import { useState,useEffect } from 'react';
+import { useSelector } from 'react-redux';
+// interface GoodsItemProps {
+//   good: GoodsType;
+// }
 const theme = createTheme({
     direction: 'rtl', // Both here and <body dir="rtl">
   });
-export  const GoodsItem: React.FC<GoodsItemProps> = ({ good }) => {
+export  const ProductPage: React.FC = () => {
+  const goodsAll = useSelector<any, GoodsType[]>(state => state.goodsBox.goods);
+  
+
+  const {id} = useParams();
+  const [product ,setProduct] = useState<GoodsType|null>();
+  
+  function getObjectById(array:GoodsType[], id:number):GoodsType | null {
+    
+    for (const obj of array) {
+      
+      if (obj.id === id) {
+        return  obj;
+      }
+    }
+    return null; // Return null if the object with the given ID is not found
+  }
+  const objectWithId = getObjectById(goodsAll,Number(id));
+
+  useEffect(() =>{
+    setProduct(objectWithId)
+    
+  },[id]);
+
     return (
-        <Box  justifyContent="center" sx={{ width: '100%', maxWidth: 500 }}>
+      <Box>
+        {product &&(
+           <Box  key={product.id} justifyContent="center" sx={{ width: '100%', maxWidth: 500 }}>
         <Card >
           <CardMedia
             sx={{ height: 250 }}
@@ -21,23 +47,23 @@ export  const GoodsItem: React.FC<GoodsItemProps> = ({ good }) => {
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
-            {good.name}
+            {product.name}
             </Typography>
             <Typography component="span" variant="body2" color="textPrimary">
-            ₪{good.price}
+            ₪{product.price}
             </Typography>
             <Typography component="span" variant="body2" color="textPrimary">
-            {good.condition}
+            {product.condition}
             </Typography>
             <Typography component="span" variant="body2" color="textPrimary">
-            {good.company}
+            {product.company}
             </Typography>
             <Typography component="span" variant="body2" color="textPrimary">
-            {good.category}
+            {product.category}
             </Typography>
 
             <Typography variant="body2" color="text.secondary">
-              {good.discription}
+              {product.discription}
             </Typography>
           </CardContent>
           <CardActions>
@@ -58,6 +84,7 @@ export  const GoodsItem: React.FC<GoodsItemProps> = ({ good }) => {
           </CardActions>
           
         </Card>
+        </Box> )}
         </Box>
       );
     

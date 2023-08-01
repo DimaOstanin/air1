@@ -1,0 +1,6 @@
+{
+    "defaultAmount": 1,
+    "minAmount":1,
+    "maxAmount":50,
+    "alertTimeout":4000
+}

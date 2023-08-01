@@ -4,6 +4,7 @@ import { Box, Grid, List, ListItem,  Typography } from '@mui/material';
 import {GoodsItem} from '../items/GoodsItem';
 import {GoodsType} from "../../model/GoodsType";
 
+import { Link } from 'react-router-dom';
 
 interface GoodsListProps {
   goods: GoodsType[];
@@ -20,9 +21,12 @@ const GoodsList: React.FC<GoodsListProps> = ({ goods }) => {
                 <Grid container spacing={1}  justifyContent="center" >
                   {goods.map(goods => (
                     
-                    <Grid item xs={9} sm={3} m={3} lg={2} key={goods.id}>
-                      <GoodsItem  good={goods} />
+                    <Grid item xs={9} sm={3} m={3} lg={2} >
+                      <Link key={goods.id} to={`/id/${goods.id}`}>
+                           <GoodsItem key={goods.id} good={goods}  />
+                      </Link>
                     </Grid>
+                    
                   ))}
                 </Grid>
               )}

@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { GoodsType } from '../model/GoodsType';
 import { CompanyFirebase } from '../service/CompanyFirebase';
 import { codeActions } from './codeSlice';
-export const company = new CompanyFirebase();
+export const goodsBox = new CompanyFirebase();
 const initialState: { goods: GoodsType[] } = {
     goods : []
 }
@@ -22,7 +22,7 @@ export const goodsActions: any = {
     addGoods: (empl: GoodsType) => {
         return async (dispatch: any) => {
             try {
-                await company.addGoods(empl);
+                await goodsBox.addGoods(empl);
              
                 dispatch(codeActions.setCode("OK"));
             } catch (error: any) {
@@ -31,10 +31,10 @@ export const goodsActions: any = {
 
         }
     },
-    updateGoodsType: (empl: GoodsType) => {
+    updateGoodsType: (goods: GoodsType) => {
         return async (dispatch: any) => {
             try {
-                await company.updateGoods(empl);
+                await goodsBox.updateGoods(goods);
               
                 dispatch(codeActions.setCode("OK"));
             } catch (error: any) {
@@ -46,7 +46,7 @@ export const goodsActions: any = {
     removeGoods: (id: number) => {
         return async (dispatch: any) => {
             try {
-                await company.removeGoods(id);
+                await goodsBox.removeGoods(id);
                 
                 dispatch(codeActions.setCode("OK"));
             } catch (error: any) {
@@ -57,11 +57,11 @@ export const goodsActions: any = {
         }
     },
     
-    addBulkGoodss: (goodsAr: GoodsType[]) => {
+    addBulkGoods: (goodsAr: GoodsType[]) => {
         return async (dispatch: any) => {
             for(let i = 0; i < goodsAr.length; i++) {
                 try{
-                    await company.addGoods(goodsAr[i]);
+                    await goodsBox.addGoods(goodsAr[i]);
                     dispatch(codeActions.setCode("OK"));
                 }catch(error: any) {
                     dispatch(codeActions.setCode("Authorization error"));
