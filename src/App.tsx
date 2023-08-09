@@ -9,7 +9,7 @@ import { useParams } from 'react-router-dom';
 import { NavigatorDispatch } from './components/navigators/NavigatorDispatch';
 
 import { ProductPage } from './components/pages/ProductPage';
-import { Home } from './components/pages/Home';
+import { Home } from './components/pages/home';
 import { Yad2 } from './components/pages/Yad2';
 import { Login } from './components/pages/Login';
 import { Logout } from './components/pages/Logout';
@@ -65,7 +65,7 @@ return <BrowserRouter>
          routes={routes}  />}>
             <Route index element={<Home/>}/>          
             <Route path='Yad2' element={<Yad2/>}/> 
-            <Route path='Yad2/:id' element={<ProductPage/>}/>
+            <Route path='Yad2/:id/' element={<ProductPage/>}/>
             <Route path='About' element={<About/>}/>
             <Route path='login' element={<Login/>}/>
             <Route path='logout' element={<Logout/>}/>

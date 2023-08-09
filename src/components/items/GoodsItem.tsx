@@ -1,9 +1,9 @@
 import React from 'react';
 import {GoodsType} from "../../model/GoodsType";
-import { ListItem, ListItemText, ListItemAvatar, Avatar, Typography, Paper, Grid, ImageListItem, Button, Card, CardActions, CardContent, CardMedia, Link } from '@mui/material';
+import { ListItem, ListItemText, ListItemAvatar, Avatar, Typography, Paper, Grid, ImageListItem, Button, Card, CardActions, CardContent, CardMedia} from '@mui/material';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { ProductPage} from '../pages/ProductPage';
-
+import { Link } from 'react-router-dom';
 interface GoodsItemProps {
   good: GoodsType;
 }
@@ -36,8 +36,9 @@ export  const GoodsItem: React.FC<GoodsItemProps> = ({ good }) => {
           </CardContent>
           <CardActions>
             <Button size="small">Share</Button>
-            <Button size="small">More</Button>
-           
+            <Button size="small">
+              <Link to={`/Yad2/${good.id}`}>More</Link>
+            </Button>
           </CardActions>
           
         </Card>

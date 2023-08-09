@@ -1,10 +1,13 @@
 import React from 'react';
 import {GoodsType} from "../../model/GoodsType";
-import { ListItem, ListItemText, ListItemAvatar, Avatar, Typography, Paper, Grid, ImageListItem, Button, Card, CardActions, CardContent, CardMedia, Box } from '@mui/material';
+import { Typography, Button, Card, CardActions, CardContent, CardMedia, Box } from '@mui/material';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { useParams } from 'react-router-dom';
 import { useState,useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import  {firestore}  from '../../config/firebase-config'
+import {collection,  getFirestore, getDocs,getDoc, setDoc, doc, deleteDoc, DocumentSnapshot} from 'firebase/firestore';
+import { db } from '../../config/firebase-config';
 // interface GoodsItemProps {
 //   good: GoodsType;
 // }
@@ -12,28 +15,29 @@ const theme = createTheme({
     direction: 'rtl', // Both here and <body dir="rtl">
   });
 export  const ProductPage: React.FC = () => {
-  const goodsAll = useSelector<any, GoodsType[]>(state => state.goodsBox.goods);
-  
+  const { id } = useParams();
+  const [product, setProduct] = useState<GoodsType | null>(null);
 
-  const {id} = useParams();
-  const [product ,setProduct] = useState<GoodsType|null>();
-  
-  function getObjectById(array:GoodsType[], id:number):GoodsType | null {
-    
-    for (const obj of array) {
-      
-      if (obj.id === id) {
-        return  obj;
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const productRef = doc(db, 'Goods', id); // Use the correct methods
+        const docSnap = await getDoc(productRef);
+
+        if (docSnap.exists()) {
+          const productData= docSnap.data();
+          setProduct(productData);
+        } else {
+          console.log('No such document!');
+        }
+      } catch (error) {
+        console.error('Error fetching document:', error);
       }
-    }
-    return null; // Return null if the object with the given ID is not found
-  }
-  const objectWithId = getObjectById(goodsAll,Number(id));
+    };
 
-  useEffect(() =>{
-    setProduct(objectWithId)
-    
-  },[id]);
+
+    fetchProduct();
+  }, [id]);
 
     return (
       <Box>

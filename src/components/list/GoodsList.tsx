@@ -10,28 +10,35 @@ interface GoodsListProps {
   goods: GoodsType[];
 }
 
-const GoodsList: React.FC<GoodsListProps> = ({ goods }) => {
+export const GoodsList: React.FC<GoodsListProps> = ({ goods }) => {
     
         return (
-            <Box>
-              <Typography variant="h4" justifyContent="center">Goods List</Typography>
-              {goods == null ? (
-                <Typography variant="h2" justifyContent="center">No goods available.</Typography>
-              ) : (
-                <Grid container spacing={1}  justifyContent="center" >
-                  {goods.map(goods => (
-                    
-                    <Grid item xs={9} sm={3} m={3} lg={2} >
-                      <Link key={goods.id} to={`/id/${goods.id}`}>
-                           <GoodsItem key={goods.id} good={goods}  />
-                      </Link>
+          <Box>
+          <Typography variant="h2" justifyContent="center">Second-Hand Goods</Typography>
+    
+          <Box>
+                  <Typography variant="h4" justifyContent="center">Goods List</Typography>
+                  {goods == null ? (
+                    <Typography variant="h2" justifyContent="center">No goods available.</Typography>
+                  ) : (
+                    <Grid container spacing={1}  justifyContent="center" >
+                      {goods.map(goods => (
+                        
+                        <Grid key={goods.id} item xs={9} sm={3} m={3} lg={2} >
+                         
+                              
+                               <GoodsItem  good={goods}  />
+                               
+                          
+                        </Grid>
+                        
+                      ))}
                     </Grid>
-                    
-                  ))}
-                </Grid>
-              )}
-            </Box>
+                  )}
+                </Box>
+          
+        </Box>
           );
         };
 
-export default GoodsList;
+
