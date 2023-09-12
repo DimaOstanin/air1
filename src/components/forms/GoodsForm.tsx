@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import {GoodsType} from "../../model/GoodsType";
 import { TextField, Button, Typography, Box, Grid, FormControl, InputLabel, Select, MenuItem} from '@mui/material';
 import goodsConfig from "../../config/goods-config.json";
+import { useSelector } from 'react-redux';
 
 type GoodsFormProps = {
   onAdd: (goods: GoodsType) => boolean,
@@ -11,16 +12,20 @@ const initialGoods:GoodsType = {
     id: 0,
     name: '',
     price: 0,
-    category:'',
+    category: '',
     image: '',
     company: '',
     condition: '',
     city: '',
-    discription: ''
+    discription: '',
+    authorEmail: ''
 }
 
 
 export const GoodsForm: React.FC<GoodsFormProps> = ({ onAdd ,goodsUpdate}) => {
+    const authUser = useSelector<any, string>(state => state.auth.authenticated);
+
+    
   const {minId,maxId, goodsCategory,minPrice, maxPrice,goodsCondition,cities} = goodsConfig;
 
   const [goods, setGoods] = useState<GoodsType>(goodsUpdate? goodsUpdate: initialGoods);  

@@ -9,7 +9,7 @@ export type GoodsType = {
     condition: string;
     city: string;
     discription: string;
-    
+    authorEmail: string;
   }
 
  

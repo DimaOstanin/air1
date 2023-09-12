@@ -14,7 +14,7 @@ export  const GoodsItem: React.FC<GoodsItemProps> = ({ good }) => {
     return (
       <ListItem key={good.id}>
         <Grid  >
-        <Card sx={{ maxWidth: 345 }}>
+        <Card sx={{ maxWidth: 450 }}>
           <CardMedia
             sx={{ height: 140 }}
             image="https://t3.ftcdn.net/jpg/03/21/62/56/360_F_321625657_rauGwvaYjtbETuwxn9kpBWKDYrVUMdB4.jpg"
