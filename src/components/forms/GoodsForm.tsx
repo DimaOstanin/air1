@@ -23,12 +23,16 @@ const initialGoods:GoodsType = {
 
 
 export const GoodsForm: React.FC<GoodsFormProps> = ({ onAdd ,goodsUpdate}) => {
+    const [goods, setGoods] = useState<GoodsType>(goodsUpdate? goodsUpdate: initialGoods);  
     const authUser = useSelector<any, string>(state => state.auth.authenticated);
-
     
   const {minId,maxId, goodsCategory,minPrice, maxPrice,goodsCondition,cities} = goodsConfig;
-
-  const [goods, setGoods] = useState<GoodsType>(goodsUpdate? goodsUpdate: initialGoods);  
+    function handlerAuthor(){
+        const goodsCopy = {...goods};
+        goodsCopy.authorEmail = authUser;
+        setGoods(goodsCopy);  
+    }
+  
   
   function handlerName(event:any){
     const name = event.target.value;
@@ -73,6 +77,7 @@ export const GoodsForm: React.FC<GoodsFormProps> = ({ onAdd ,goodsUpdate}) => {
     setGoods(goodsCopy);
   }
   function onSubmitFn(event: any) {
+    handlerAuthor();
     event.preventDefault();
     onAdd(goods);
     document.querySelector('form')!.reset();
@@ -134,7 +139,7 @@ return <Box sx={{ marginTop: { sm: "25vh" } }}>
             <FormControl fullWidth required>
                 <InputLabel id="select-city-id">עיר</InputLabel>
                 <Select labelId="select-city-id" label="עיר"
-                    value={goods.condition} onChange={handlerCondition}>
+                    value={goods.city} onChange={handlerCity}>
                     <MenuItem value=''>None</MenuItem>
                     {cities.sort().map(city => <MenuItem value={city}>{city}</MenuItem>)}
                 </Select>

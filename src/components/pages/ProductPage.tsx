@@ -1,13 +1,14 @@
 import React from 'react';
 import {GoodsType} from "../../model/GoodsType";
 import { Typography, Button, Card, CardActions, CardContent, CardMedia, Box, Divider } from '@mui/material';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { ThemeProvider, createTheme, styled } from '@mui/material/styles';
 import { useParams } from 'react-router-dom';
 import { useState,useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import  {firestore}  from '../../config/firebase-config'
 import {collection,  getFirestore, getDocs,getDoc, setDoc, doc, deleteDoc, DocumentSnapshot} from 'firebase/firestore';
 import { db } from '../../config/firebase-config';
+import { Image } from '@mui/icons-material';
 // interface GoodsItemProps {
 //   good: GoodsType;
 // }
@@ -38,59 +39,54 @@ export  const ProductPage: React.FC = () => {
 
     fetchProduct();
   }, [id]);
+ 
 
     return (
       <Box>
         {product &&(
            <Box  key={product.id} justifyContent="center" sx={{ width: '100%', maxWidth: '100%' ,maxHeight: '100%'}}>
         <Card >
-          <CardMedia
-            sx={{ height: 250 }}
-            image="/static/images/cards/contemplative-reptile.jpg"
-            title="green iguana"
-          />
+         
           <CardContent>
+            <img src={product.image} width={"100%"}/>
+          
             <Typography gutterBottom variant="h5" component="div">
             {product.name}
             </Typography>
             <Typography component="span" variant="h4"  color="textPrimary" >
             ₪{product.price}
             </Typography>
-            <Divider sx={{b: 5,m: 1} }/>
+            <Divider textAlign="right" >עיר</Divider>
             <Typography component="span" variant="h5"  color="textPrimary" >
             {product.city}
             </Typography>
-            <Divider sx={{b: 5,m: 1} }/>
+            <Divider textAlign="right" >מצב המוצר</Divider>
             <Typography component="span" variant="h5" color="textPrimary" >
             {product.condition}
             </Typography>
-            <Divider sx={{b: 5,m: 1} }/>
+            <Divider textAlign="right" >חברה</Divider>
             <Typography component="span" variant="h5" color="textPrimary" >
             {product.company}
             </Typography>
-            <Divider sx={{b: 5,m: 1} }/>
+            <Divider textAlign="right" >קטגוריה</Divider>
             <Typography component="span" variant="h5" color="textPrimary" >
             {product.category}
             </Typography>
-
+            <Divider textAlign="right" >על המוצר</Divider>
             <Typography variant="h6" color="text.secondary">
               {product.discription}
             </Typography>
           </CardContent>
-          <Divider />
-          <Typography  component="span" variant="h5" color="textPrimary" sx={{textAlign: 'center', m:'35%'}}>
-            צור כשר
-            </Typography>
+          <Divider>  צור כשר</Divider>
+          
           <CardActions>
             <Button size="large">צלצל</Button>
             <Button size="large">What's Up</Button>
             <Button size="large">Telegram</Button>
           </CardActions>
 
-          <Divider />
-          <Typography component="span" variant="h5" color="textPrimary" sx={{textAlign: 'center', m: '35%'}}>
-            שיטוף מוצר
-            </Typography>
+          <Divider>    שיטוף מוצר</Divider>
+          
           <CardActions>
           
             <Button size="large">Share</Button>

@@ -26,7 +26,8 @@ export const NoFoundPAge: React.FC = () => {
       <Typography variant="h1" justifyContent="center">
      שגיאה 404 עמוד לא קיים 
       </Typography>
-    <Background />
+    {/* <Background /> */}
+    <img src={imageURL}/>
     </Box>
   );
 };

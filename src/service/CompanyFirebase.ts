@@ -5,6 +5,7 @@ import {app} from '../config/firebase-config';
 import {collection,  getFirestore, getDocs, setDoc, doc, deleteDoc, DocumentSnapshot} from 'firebase/firestore';
 import { Observable } from "rxjs";
 import { collectionData} from "rxfire/firestore";
+
 const GoodS = "Goods";
 
 export class CompanyFirebase {

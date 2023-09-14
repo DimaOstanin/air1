@@ -4,7 +4,7 @@ import goodsConfig from "../config/goods-config.json";
 import { useSelector } from "react-redux";
 
 export function createRandomGoods(): GoodsType {
-    const authUser = useSelector<any, string>(state => state.auth.authenticated);
+    
 
     const {goodsCategory,
           minPrice, maxPrice,goodsCondition,cities} = goodsConfig;
@@ -16,7 +16,7 @@ export function createRandomGoods(): GoodsType {
     const price = getRandomNumber(minPrice, maxPrice);
     const image = "https://t3.ftcdn.net/jpg/03/21/62/56/360_F_321625657_rauGwvaYjtbETuwxn9kpBWKDYrVUMdB4.jpg";
     const city = getElement(cities);
-    const authorEmail = authUser;
+    const authorEmail = "spdima007@gmail.com";
     const goods: GoodsType = {
         id, name, price, image, category,
         company:comp,
