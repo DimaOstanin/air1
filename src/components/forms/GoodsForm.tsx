@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import {GoodsType} from "../../model/GoodsType";
-import { TextField, Button, Typography, Box, Grid, FormControl, InputLabel, Select, MenuItem} from '@mui/material';
+import { TextField, Button, Typography, Box, Grid, FormControl, InputLabel, Select, MenuItem, Stack, Container} from '@mui/material';
 import goodsConfig from "../../config/goods-config.json";
 import { useSelector } from 'react-redux';
+import { FireBaseStorage } from '../../service/FireBaseStorage';
 
 type GoodsFormProps = {
   onAdd: (goods: GoodsType) => boolean,
@@ -26,12 +27,27 @@ export const GoodsForm: React.FC<GoodsFormProps> = ({ onAdd ,goodsUpdate}) => {
     const [goods, setGoods] = useState<GoodsType>(goodsUpdate? goodsUpdate: initialGoods);  
     const authUser = useSelector<any, string>(state => state.auth.authenticated);
     
+    const [imageUrl, setImageUrl] = useState<any>(null);
+    const [selectedFile , setSelectedFile] = useState<any>(null);
+
+    const {startUpload ,url} = FireBaseStorage();
+    const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0];
+        setSelectedFile( event.target.files?.[0])
+        if (file) {
+          const reader = new FileReader();
+    
+          reader.onloadend = () => {
+            setImageUrl(reader.result as string);
+          };
+    
+          reader.readAsDataURL(file);
+        }
+        
+      };
+
   const {minId,maxId, goodsCategory,minPrice, maxPrice,goodsCondition,cities} = goodsConfig;
-    function handlerAuthor(){
-        const goodsCopy = {...goods};
-        goodsCopy.authorEmail = authUser;
-        setGoods(goodsCopy);  
-    }
+    
   
   
   function handlerName(event:any){
@@ -76,9 +92,29 @@ export const GoodsForm: React.FC<GoodsFormProps> = ({ onAdd ,goodsUpdate}) => {
     goodsCopy.discription = discription;
     setGoods(goodsCopy);
   }
+  function handlerAuthor(){
+    const goodsCopy = {...goods};
+    goodsCopy.authorEmail = authUser;
+    setGoods(goodsCopy);  
+}
+  function handlerImageUrl (){
+    const goodsCopy = {...goods};
+    goodsCopy.image = url;
+    setGoods(goodsCopy); 
+  }
+  function onClickdownload( ){
+    if(selectedFile){
+        startUpload(selectedFile);
+       console.log(selectedFile);
+   }
+   handlerImageUrl();
+  }
   function onSubmitFn(event: any) {
     handlerAuthor();
+    handlerImageUrl();
     event.preventDefault();
+   
+  
     onAdd(goods);
     document.querySelector('form')!.reset();
 }
@@ -89,6 +125,29 @@ function onResetFn(event: any) {
 return <Box sx={{ marginTop: { sm: "25vh" } }}>
 <form onSubmit={onSubmitFn} onReset={onResetFn}>
     <Grid container spacing={4} justifyContent="center">
+        <Grid item xs={8} sm={8}>
+        <Container maxWidth="md" sx={{ mt: 8 }}>
+        <Button onClick={onClickdownload} variant="contained" component="span">
+            download
+          </Button>
+      <Stack direction="row" alignItems="center" spacing={2}>
+        <label htmlFor="upload-image">
+          <Button  variant="contained" component="span">
+            Upload
+          </Button>
+         
+          <input
+            id="upload-image"
+            hidden
+            accept="image/*"
+            type="file"
+            onChange={handleFileUpload}
+          />
+        </label>
+        {imageUrl && <img src={imageUrl} alt="Uploaded Image" height="300" />}
+      </Stack>
+    </Container>
+        </Grid>
         <Grid item xs={8} sm={5} >
             <FormControl fullWidth required>
                 <InputLabel id="select-category-id">קטגוריה</InputLabel>
@@ -146,7 +205,7 @@ return <Box sx={{ marginTop: { sm: "25vh" } }}>
             </FormControl>
         </Grid>
         <Grid item xs={8} sm={5} >
-            <TextField type="text" required fullWidth label="תיאור"
+            <TextField multiline type="text" required fullWidth label="תיאור"
                 helperText="תאר את המוצר והוסף את מה שמגיע איתו" onChange={handlerDiscription}
                 value={goods.discription} 
                 />

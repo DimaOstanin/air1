@@ -17,7 +17,7 @@ export  const GoodsItem: React.FC<GoodsItemProps> = ({ good }) => {
         <Card sx={{ maxWidth: 345 ,minWidth: 345 }}>
           <CardMedia
             sx={{ height: 250 ,padding: "1em 1em 0 1em" , objectFit: "contain"}}
-            image="https://t3.ftcdn.net/jpg/03/21/62/56/360_F_321625657_rauGwvaYjtbETuwxn9kpBWKDYrVUMdB4.jpg"
+            image={good.image}
             title={good.name}
           />
           <CardContent>

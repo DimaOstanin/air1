@@ -5,13 +5,13 @@ import { FireBaseStorage } from '../../service/FireBaseStorage';
 
 
 export const UploadForm: React.FC = () => {
-    const [imageUrl, setImageUrl] = useState<string | ArrayBuffer | null>(null);
-    const [selectedFile , setSelectedFile] = useState<File| null |ArrayBuffer|string>(null);
+    const [imageUrl, setImageUrl] = useState<any>(null);
+    const [selectedFile , setSelectedFile] = useState<any>(null);
 
-    const {startUpload} = FireBaseStorage();
+    const {startUpload ,url} = FireBaseStorage();
     const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0];
-    
+        setSelectedFile( event.target.files?.[0])
         if (file) {
           const reader = new FileReader();
     
