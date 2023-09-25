@@ -12,11 +12,11 @@ const theme = createTheme({
   });
 export  const GoodsItem: React.FC<GoodsItemProps> = ({ good }) => {
     return (
-      <ListItem key={good.id}>
+      <ListItem key={good.id} sx={{ padding: "0rem", flexGrow: "1"}}>
         <Grid  >
-        <Card sx={{ maxWidth: "100%" ,minWidth:"100%" }}>
+        <Card sx={{ maxWidth: 345 ,minWidth: 345 }}>
           <CardMedia
-            sx={{ height: 140 }}
+            sx={{ height: 250 ,padding: "1em 1em 0 1em" , objectFit: "contain"}}
             image="https://t3.ftcdn.net/jpg/03/21/62/56/360_F_321625657_rauGwvaYjtbETuwxn9kpBWKDYrVUMdB4.jpg"
             title={good.name}
           />
@@ -48,35 +48,3 @@ export  const GoodsItem: React.FC<GoodsItemProps> = ({ good }) => {
     
 };
 
-
-
-
-
-// return (
-//     <ThemeProvider theme={theme}>
-// <Grid >
-//     <Paper  sx={{width:{xs: '60vh', sm: '55vw', lg: '90vw'}} }>
-        
-//     <ListItemAvatar>
-//         <Avatar src={good.image} alt={good.name} />
-//     </ListItemAvatar>
-//     <ImageListItem>
-        
-//     </ImageListItem>
-//     <ListItemText 
-//         primary={good.name}
-//         secondary={<>
-//             <Typography component="span" variant="body2" color="textPrimary">
-//                 שקל{good.price}
-//             </Typography>
-//             <br />
-//             {good.condition} מצב
-//             <br />
-//             {good.city} עיר
-            
-//         </>} />
-        
-//         </Paper>
-// </Grid>
-// </ThemeProvider>
-// );

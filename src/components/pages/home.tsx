@@ -1,7 +1,7 @@
  import React from 'react';
 import { makeStyles, createStyles, Theme } from '@mui/material';
 import { Typography } from '@mui/material';
-
+import { UploadForm } from '../forms/UploadForm';
 
 export const Home: React.FC = () => {
   
@@ -13,7 +13,10 @@ export const Home: React.FC = () => {
       <Typography sx={{m:5}} variant="body1">
       כאן תוכלו למצוא מידע על איירסופט
       </Typography>
+      <UploadForm></UploadForm>
     </div>
+    
+
   );
 };
 
