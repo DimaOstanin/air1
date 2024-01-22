@@ -11,34 +11,23 @@ interface GoodsListProps {
 }
 
 export const GoodsList: React.FC<GoodsListProps> = ({ goods }) => {
-    
-        return (
+  return (
+      <Box>
+          <Typography variant="h4" sx={{display:"flex",justifyContent:"center",marginTop: "-60px"}}>Second-Hand Goods</Typography>
           <Box>
-          <Typography variant="h2" justifyContent="center">Second-Hand Goods</Typography>
-    
-          <Box>
-                  <Typography variant="h4" justifyContent="center">Goods List</Typography>
-                  {goods == null ? (
-                    <Typography variant="h2" justifyContent="center">No goods available.</Typography>
-                  ) : (
-                    <Grid container spacing={1}   >
+              
+              {goods == null ? (
+                  <Typography variant="h2" >No goods available.</Typography>
+              ) : (
+                  <Grid container spacing={1}>
                       {goods.map(goods => (
-                        
-                        <Grid  key={goods.id} item xs={10} sm={4.5} m={3} lg={3.1}  >
-                         
-                              
-                               <GoodsItem  good={goods}  />
-                               
-                          
-                        </Grid>
-                        
+                          <Grid key={goods.id} item xs={12} sm={6} md={4} lg={3}>
+                              <GoodsItem good={goods}  />
+                          </Grid>
                       ))}
-                    </Grid>
-                  )}
-                </Box>
-          
-        </Box>
-          );
-        };
-
-
+                  </Grid>
+              )}
+          </Box>
+      </Box>
+  );
+};

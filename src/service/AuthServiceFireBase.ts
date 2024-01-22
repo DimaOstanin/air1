@@ -5,7 +5,7 @@ import { LoginData } from '../model/LoginData';
 export class AuthServiceFirebase  {
     private auth = getAuth(app);
     async login(loginData: LoginData):Promise<string>{
-        if(loginData.username == "GOOGLE"){
+        if(loginData.username === "GOOGLE"){
             const credentials =  await signInWithPopup(this.auth, new GoogleAuthProvider())
             return credentials.user.email || '';
         }else {

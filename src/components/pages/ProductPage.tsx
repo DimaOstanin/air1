@@ -16,29 +16,30 @@ const theme = createTheme({
     direction: 'rtl', // Both here and <body dir="rtl">
   });
 export  const ProductPage: React.FC = () => {
-  const { id } = useParams();
+  const { id } = useParams<{ id: string }>();
   const [product, setProduct] = useState<GoodsType | null>(null);
 
   useEffect(() => {
     const fetchProduct = async () => {
-      try {
-        const productRef = doc(db, 'Goods', id); // Use the correct methods
-        const docSnap = await getDoc(productRef);
+      if (id) {
+        try {
+          const productRef = doc(db, 'Goods', id);
+          const docSnap = await getDoc(productRef);
 
-        if (docSnap.exists()) {
-          const productData= docSnap.data() as GoodsType ;
-          setProduct(productData);
-        } else {
-          console.log('No such document!');
+          if (docSnap.exists()) {
+            const productData = docSnap.data() as GoodsType ;
+            setProduct(productData);
+          } else {
+            console.log('No such document!');
+          }
+        } catch (error) {
+          console.error('Error fetching document:', error);
         }
-      } catch (error) {
-        console.error('Error fetching document:', error);
       }
     };
 
-
     fetchProduct();
-  }, [id]);
+}, [id]);
  
 
     return (

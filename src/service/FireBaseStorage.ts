@@ -23,11 +23,9 @@ export const FireBaseStorage = () => {
             setProgress(progress);
         },(error) =>{
             setError(error);
-        }, () =>{
-            getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) =>{
-                console.log(downloadURL);
-                setUrl(downloadURL);
-            })
+        },async () =>{
+          const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+          setUrl(downloadURL);
         })
     }
 

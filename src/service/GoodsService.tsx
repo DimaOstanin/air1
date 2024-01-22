@@ -9,7 +9,7 @@ export function createRandomGoods(): GoodsType {
     const {goodsCategory,
           minPrice, maxPrice,goodsCondition,cities} = goodsConfig;
     const id =  Date.now();
-    const name = "מוצר" + Date.now();
+    const name = "SAMPLE-דוּגמָה " + Date.now();
     const comp = "חברה" + Date.now();
     const category = getElement(goodsCategory); 
     const condition = getElement(goodsCondition);
