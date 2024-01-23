@@ -15,9 +15,10 @@ export const GoodsItem: React.FC<GoodsItemProps> = ({ good }) => {
       <Link to={`/Yad2/${good.id}`}>
         <Card sx={{ maxWidth: 260, minWidth: 260, height: "400px", boxShadow: "0 8px 16px 0 rgba(0,255,255,0.2)", backgroundColor: "#0a0a0a", color: "#0ff", borderRadius: "15px", margin: "10px 0",  width: "260px" }}>
           <CardMedia
-            sx={{ height: 200, width: null, padding: "1em 1em 0 1em", esizeMode: 'cover' }}
-            image={good.image}
-            title={good.name}
+           
+           sx= {{ height: 200, width: null, padding: "1em 1em 0 1em", esizeMode: 'cover' }}
+           image= {good.image}
+           title= {good.name}
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div" sx={{ fontWeight: "bold" }}>

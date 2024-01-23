@@ -9,9 +9,7 @@ import  {firestore}  from '../../config/firebase-config'
 import {collection,  getFirestore, getDocs,getDoc, setDoc, doc, deleteDoc, DocumentSnapshot} from 'firebase/firestore';
 import { db } from '../../config/firebase-config';
 import { Image } from '@mui/icons-material';
-// interface GoodsItemProps {
-//   good: GoodsType;
-// }
+
 const theme = createTheme({
     direction: 'rtl', // Both here and <body dir="rtl">
   });

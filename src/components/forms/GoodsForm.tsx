@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import {GoodsType} from "../../model/GoodsType";
-import { TextField, Button, Typography, Box, Grid, FormControl, InputLabel, Select, MenuItem, Stack, Container} from '@mui/material';
+import { TextField, Button, Typography, Box, Grid, FormControl, InputLabel, Select, MenuItem, Stack, Container, Alert} from '@mui/material';
 import goodsConfig from "../../config/goods-config.json";
 import { useSelector } from 'react-redux';
 import { FireBaseStorage } from '../../service/FireBaseStorage';
-
+import { useNavigate } from 'react-router-dom';
+import './formStyles.css';
 type GoodsFormProps = {
   onAdd: (goods: GoodsType) => boolean,
    goodsUpdate?: GoodsType
@@ -29,9 +30,11 @@ export const GoodsForm: React.FC<GoodsFormProps> = ({ onAdd ,goodsUpdate}) => {
     
     const [imageUrl, setImageUrl] = useState<any>(null);
     const [selectedFile , setSelectedFile] = useState<any>(null);
+    const [imageloaded,setImageLoaded] =useState<boolean>(false);
 
     const {startUpload ,url} = FireBaseStorage();
     const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setImageLoaded(false);
         const file = event.target.files?.[0];
         setSelectedFile( event.target.files?.[0])
         if (file) {
@@ -47,13 +50,13 @@ export const GoodsForm: React.FC<GoodsFormProps> = ({ onAdd ,goodsUpdate}) => {
       };
 
   const {minId,maxId, goodsCategory,minPrice, maxPrice,goodsCondition,cities} = goodsConfig;
-    
+  const navigate = useNavigate();
   
   
   function handlerName(event:any){
-    const name = event.target.value;
+    const name =   event.target.value;
     const goodsCopy = {...goods};
-    goodsCopy.name = name;
+    goodsCopy.name = name ;
     setGoods(goodsCopy);
   }
   function handlerPrice(event:any){
@@ -99,13 +102,14 @@ export const GoodsForm: React.FC<GoodsFormProps> = ({ onAdd ,goodsUpdate}) => {
 }
   function handlerImageUrl (){
     const goodsCopy = {...goods};
-    goodsCopy.image = url;
+    goodsCopy.image = imageUrl;
     setGoods(goodsCopy); 
   }
   function onClickdownload( ){
     if(selectedFile){
         startUpload(selectedFile);
        console.log(selectedFile);
+       setImageLoaded(true);
    }
    handlerImageUrl();
   }
@@ -117,23 +121,23 @@ export const GoodsForm: React.FC<GoodsFormProps> = ({ onAdd ,goodsUpdate}) => {
   
     onAdd(goods);
     document.querySelector('form')!.reset();
+    // navigate("/");
 }
 function onResetFn(event: any) {
     setGoods(goodsUpdate ? goodsUpdate : initialGoods);
 }
-  
+
+
 return <Box sx={{ marginTop: { sm: "25vh" } }}>
 <form onSubmit={onSubmitFn} onReset={onResetFn}>
     <Grid container spacing={4} justifyContent="center">
         <Grid item xs={8} sm={8}>
-        <Container maxWidth="md" sx={{ mt: 8 }}>
-        <Button onClick={onClickdownload} variant="contained" component="span">
-            download
-          </Button>
+        <Container maxWidth="md" sx={{display:"flex",flexDirection:"column"}}>
+        
       <Stack direction="row" alignItems="center" spacing={2}>
         <label htmlFor="upload-image">
           <Button  variant="contained" component="span">
-            Upload
+          לבחור תמונה
           </Button>
          
           <input
@@ -144,14 +148,19 @@ return <Box sx={{ marginTop: { sm: "25vh" } }}>
             onChange={handleFileUpload}
           />
         </label>
-        {imageUrl && <img src={imageUrl} alt="Uploaded Image" height="300" />}
+        
       </Stack>
+      {imageUrl && <img src={imageUrl}  alt="Uploaded Image" height="300" />}
+      {imageUrl && <Button onClick={onClickdownload} variant="contained" component="span">
+        העלאת תמונה
+          </Button>}
+      {imageloaded && <Alert severity="success">הקובץ הועלה בהצלחה</Alert>}
     </Container>
         </Grid>
         <Grid item xs={8} sm={5} >
             <FormControl fullWidth required>
                 <InputLabel id="select-category-id">קטגוריה</InputLabel>
-                <Select labelId="select-category-id" label="קטגוריה"
+                <Select labelId="select-category-id-1" label="קטגוריה"
                     value={goods.category} onChange={handlerCategory}>
                     <MenuItem value=''>None</MenuItem>
                     {goodsCategory.map(category => <MenuItem value={category}>{category}</MenuItem>)}
