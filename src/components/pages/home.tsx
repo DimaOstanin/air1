@@ -1,7 +1,7 @@
- import React from 'react';
-import { makeStyles, createStyles, Theme } from '@mui/material';
-import { Typography } from '@mui/material';
-import { UploadForm } from '../forms/UploadForm';
+ 
+import React from "react";
+import { Typography} from "@mui/material";
+import { Profile } from "./Profile";
 
 export const Home: React.FC = () => {
   
@@ -13,10 +13,14 @@ export const Home: React.FC = () => {
       <Typography sx={{m:5}} variant="body1">
       כאן תוכלו למצוא מידע על איירסופט
       </Typography>
-      <UploadForm></UploadForm>
+      <Profile/>
     </div>
     
 
   );
 };
+
+// Define the interface for the props
+
+
 

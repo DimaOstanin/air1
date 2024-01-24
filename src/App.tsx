@@ -9,7 +9,7 @@ import { useParams } from 'react-router-dom';
 import { NavigatorDispatch } from './components/navigators/NavigatorDispatch';
 
 import { ProductPage } from './components/pages/ProductPage';
-import { Home } from './components/pages/home';
+import { Home } from './components/pages/Home';
 import { Yad2 } from './components/pages/Yad2';
 import { Login } from './components/pages/Login';
 import { Logout } from './components/pages/Logout';
@@ -18,9 +18,10 @@ import { NoFoundPAge } from './components/pages/NoFoundPage';
 import { Generation } from './components/pages/Generation';
 import {Subscription} from 'rxjs';
 import { codeActions } from './redux/codeSlice';
-import { setGoods } from './redux/goodsSlice';
+import { goodsActions, setGoods } from './redux/goodsSlice';
 import { goodsBox } from './redux/goodsSlice';
 import { GoodsType } from './model/GoodsType';
+import { GoodsForm } from './components/forms/GoodsForm';
 
 
 function App() {
@@ -34,10 +35,8 @@ function App() {
           .find(r => r.path.includes('logout'))
           logoutRoute!.label = authUser;
           console.log(authUser)
-        //   return layoutConfig.routes.filter(r => (!authUser && !r.flAuth ) ||
-        //   (authUser.includes('admin') && r.flAdmin) ||
-        //   (authUser && !r.flAuth && !r.flAdmin ))
-         return layoutConfig.routes;
+          return layoutConfig.routes.filter(r => (authUser && r && !r.flAuth ) || (!authUser && r && r.flAuth)   )
+        //  return layoutConfig.routes;
       }
       setRoutes(getRoutes());
   }, [authUser]);
@@ -71,7 +70,7 @@ return <BrowserRouter>
             <Route path='login' element={<Login/>}/>
             <Route path='logout' element={<Logout/>}/>
             <Route path='logout' element={<Logout/>}/>
-            
+            <Route path='create' element={<GoodsForm onAdd={(goodss) => {dispatch(goodsActions.addGoods(goodss));return true }} />}/>
             <Route path='Generate' element={<Generation/>}/>
             
             <Route path='*' element={<NoFoundPAge />}/>

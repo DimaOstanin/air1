@@ -32,6 +32,7 @@ export const GoodsForm: React.FC<GoodsFormProps> = ({ onAdd ,goodsUpdate}) => {
     const [selectedFile , setSelectedFile] = useState<any>(null);
     const [imageloaded,setImageLoaded] =useState<boolean>(false);
 
+
     const {startUpload ,url} = FireBaseStorage();
     const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
         setImageLoaded(false);
@@ -50,7 +51,7 @@ export const GoodsForm: React.FC<GoodsFormProps> = ({ onAdd ,goodsUpdate}) => {
       };
 
   const {minId,maxId, goodsCategory,minPrice, maxPrice,goodsCondition,cities} = goodsConfig;
-  const navigate = useNavigate();
+  
   
   
   function handlerName(event:any){
@@ -121,12 +122,15 @@ export const GoodsForm: React.FC<GoodsFormProps> = ({ onAdd ,goodsUpdate}) => {
   
     onAdd(goods);
     document.querySelector('form')!.reset();
-    // navigate("/");
+    goBack();
 }
 function onResetFn(event: any) {
     setGoods(goodsUpdate ? goodsUpdate : initialGoods);
 }
-
+const navigate = useNavigate();
+const goBack = () => {
+  navigate(-1); 
+};
 
 return <Box sx={{ marginTop: { sm: "25vh" } }}>
 <form onSubmit={onSubmitFn} onReset={onResetFn}>
@@ -155,6 +159,8 @@ return <Box sx={{ marginTop: { sm: "25vh" } }}>
         העלאת תמונה
           </Button>}
       {imageloaded && <Alert severity="success">הקובץ הועלה בהצלחה</Alert>}
+
+      
     </Container>
         </Grid>
         <Grid item xs={8} sm={5} >
@@ -225,8 +231,8 @@ return <Box sx={{ marginTop: { sm: "25vh" } }}>
 
 
 <Box sx={{ marginTop: {xs: "10vh", sm:"5vh"}, textAlign: "center"}}>
-<Button type="submit">Submit</Button>
-    <Button type="reset">Reset</Button>
+<Button type="submit" variant="contained" sx={{marginRight:'15px'}}>Submit</Button>
+    <Button type="reset" variant="contained" sx={{marginRight:'15px'}}>Reset</Button>
 </Box>
     
 

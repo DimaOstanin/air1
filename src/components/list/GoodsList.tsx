@@ -5,6 +5,7 @@ import { GoodsItem } from '../items/GoodsItem';
 import { GoodsType } from "../../model/GoodsType";
 import './item.css'
 import { Link } from 'react-router-dom';
+import backGround from '../../image/multicam.png';
 
 interface GoodsListProps {
     goods: GoodsType[];
@@ -16,7 +17,7 @@ export const GoodsList: React.FC<GoodsListProps> = ({ goods }) => {
     const [sort, setSort] = useState('none');
     const [city, setCity] = useState('all');
     const [category, setCategory] = useState("all");
-
+    const [quantity,setQuantity] = useState(goods.length);
 
     const [filteredGoods, setFilteredGoods] = useState(goods);
 
@@ -44,7 +45,7 @@ export const GoodsList: React.FC<GoodsListProps> = ({ goods }) => {
 
 
         setFilteredGoods(filtered);
-    }, [goods, search, sort, city, category]);
+    }, [goods, search, sort, city, category,quantity]);
 
 
     const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -64,8 +65,8 @@ export const GoodsList: React.FC<GoodsListProps> = ({ goods }) => {
     const { minId, maxId, goodsCategory, minPrice, maxPrice, goodsCondition, cities } = goodsConfig;
 
     return (
-        <Box>
-            <Typography variant="h4" sx={{ display: "flex", justifyContent: "center", marginTop: "-60px" }}>Second-Hand Goods</Typography>
+        <Box >
+           <Typography variant="h4" sx={{ display: "flex", justifyContent: "center", marginTop: "-60px" }}> {filteredGoods.length} מודעות</Typography>
             <Box>
                 {/* UI elements for the search, sorting, and city options */}
                 <TextField label="חיפוש לפי מילה מפתח" sx={{ marginRight: "10px", marginTop: "10px" }} value={search} onChange={handleSearchChange} />
@@ -86,9 +87,9 @@ export const GoodsList: React.FC<GoodsListProps> = ({ goods }) => {
                 {filteredGoods.length === 0 ? (
                     <Typography variant="h2" >לא נמצאו מוצרים</Typography>
                 ) : (
-                    <Grid container spacing={1}>
+                    <Grid container spacing={1} >
                         {filteredGoods.map(good => (
-                            <Grid key={good.id} item xs={12} sm={6} md={4} lg={3}>
+                            <Grid key={good.id} item xs={12} sm={6} md={4} lg={3} >
                                 <GoodsItem good={good} />
                             </Grid>
                         ))}

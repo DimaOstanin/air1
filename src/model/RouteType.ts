@@ -1,6 +1,6 @@
 export type RouteType = {
     label: string,
     path: string,
-    flAuth: boolean,
+    flAuth?: boolean,
     flAdmin?: boolean
 }
