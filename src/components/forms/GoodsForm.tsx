@@ -10,18 +10,7 @@ type GoodsFormProps = {
   onAdd: (goods: GoodsType) => boolean,
   goodsUpdate?: GoodsType
 }
-const initialGoods: GoodsType = {
-  id: 0,
-  name: '',
-  price: 0,
-  category: '',
-  image: '',
-  company: '',
-  condition: '',
-  city: '',
-  discription: '',
-  authorEmail: ''
-}
+
 const style = {
   position: 'absolute' as 'absolute',
   top: '50%',
@@ -38,19 +27,28 @@ const style = {
 
 
 export const GoodsForm: React.FC<GoodsFormProps> = ({ onAdd, goodsUpdate }) => {
-  const [goods, setGoods] = useState<GoodsType>(goodsUpdate ? goodsUpdate : initialGoods);
   const authUser = useSelector<any, string>(state => state.auth.authenticated);
+  const initialGoods: GoodsType = {
+    id: 0,
+    name: '',
+    price: 0,
+    category: '',
+    image: '',
+    company: '',
+    condition: '',
+    city: '',
+    discription: '',
+    authorEmail: authUser
+  }
+  const [goods, setGoods] = useState<GoodsType>(goodsUpdate ? goodsUpdate : initialGoods);
+  
   const [imageUrl, setImageUrl] = useState<any>(null);
   const [selectedFile, setSelectedFile] = useState<any>(null);
   const [imageloaded, setImageLoaded] = useState<boolean>(false);
   const [open, setOpen] = React.useState(false);
-  const handleOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
-
+  
+  
+  
   const { startUpload, url } = FireBaseStorage();
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     setImageLoaded(false);
@@ -115,6 +113,7 @@ export const GoodsForm: React.FC<GoodsFormProps> = ({ onAdd, goodsUpdate }) => {
     setGoods(goodsCopy);
   }
   function handlerAuthor() {
+    
     const goodsCopy = { ...goods };
     goodsCopy.authorEmail = authUser;
     setGoods(goodsCopy);
@@ -131,10 +130,11 @@ export const GoodsForm: React.FC<GoodsFormProps> = ({ onAdd, goodsUpdate }) => {
       setImageLoaded(true);
     }
     handlerImageUrl();
+    
   }
   function onSubmitFn(event: any) {
     handlerAuthor();
-    handlerImageUrl();
+     handlerImageUrl();
     event.preventDefault();
     onAdd(goods);
     document.querySelector('form')!.reset();
@@ -252,7 +252,7 @@ export const GoodsForm: React.FC<GoodsFormProps> = ({ onAdd, goodsUpdate }) => {
 
           <Modal
             open={open}
-            onClose={handleClose}
+            onClose={()=>setOpen(false)}
             aria-labelledby="parent-modal-title"
             aria-describedby="parent-modal-description"
           >

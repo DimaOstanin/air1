@@ -21,7 +21,7 @@ function Copyright(props: any) {
       <Link color="inherit" href=" ">
       DIMA OSTANIN
       </Link>{' '}
-      {2022}
+      {2023}
       {'.'}
     </Typography>
   );

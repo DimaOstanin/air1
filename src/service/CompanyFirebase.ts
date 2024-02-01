@@ -12,6 +12,7 @@ export class CompanyFirebase {
     public goodsCol = collection(getFirestore(app), GoodS);
     async addGoods(goods: GoodsType): Promise<void> {
         goods.id = getRandomNumber(GoodsConfig.minId, GoodsConfig.maxId);
+        
        await this.updateGoods(goods);
     }
     async updateGoods(goods: GoodsType): Promise<void> {
