@@ -15,6 +15,8 @@ import { goodsActions } from "../../redux/goodsSlice";
 import { GoodsForm } from '../forms/GoodsForm';
 
 const style = {
+  overflow:'scroll',
+    height:'100%',
   position: 'absolute' as 'absolute',
   top: '50%',
   left: '50%',
@@ -118,12 +120,11 @@ export const ProductPage: React.FC = () => {
                   onClose={() => setOpenEditModal(false)}
                   aria-labelledby="parent-modal-title"
                   aria-describedby="parent-modal-description"
+                  
                 >
-                  <Box sx={{ ...style, width:"100%"}}>
+                  <Box sx={{ ...style, width:"80%"}}>
                     <GoodsForm onAdd={function (product: any) {
-
                       dispatch(goodsActions.updateGoodsType(product));
-
                       return true;
                     }} goodsUpdate={product as GoodsType} />
                   </Box>

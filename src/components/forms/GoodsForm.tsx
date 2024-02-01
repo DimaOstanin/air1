@@ -44,7 +44,7 @@ export const GoodsForm: React.FC<GoodsFormProps> = ({ onAdd, goodsUpdate }) => {
   
   const [imageUrl, setImageUrl] = useState<any>(null);
   const [selectedFile, setSelectedFile] = useState<any>(null);
-  const [imageloaded, setImageLoaded] = useState<boolean>(false);
+  const [imageloaded, setImageLoaded] = useState<boolean>(goodsUpdate ? true : false);
   const [open, setOpen] = React.useState(false);
   
   
@@ -175,7 +175,7 @@ export const GoodsForm: React.FC<GoodsFormProps> = ({ onAdd, goodsUpdate }) => {
             {imageUrl && <Button onClick={onClickdownload} variant="contained" component="span">
               העלאת תמונה
             </Button>}
-            {imageloaded && <Alert severity="success">הקובץ הועלה בהצלחה</Alert>}
+            {imageloaded && <Alert severity="success">הקובץ שמור  </Alert>}
 
 
           </Container>
@@ -258,7 +258,7 @@ export const GoodsForm: React.FC<GoodsFormProps> = ({ onAdd, goodsUpdate }) => {
           >
             <Box sx={{ ...style, width: 400 }}>
 
-              <Alert severity="success">הקובץ נוסף בהצלחה</Alert>
+              <Alert severity="success"> הקובץ נשמר </Alert>
 
             </Box>
           </Modal>
