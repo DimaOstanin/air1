@@ -152,7 +152,7 @@ export const GoodsForm: React.FC<GoodsFormProps> = ({ onAdd, goodsUpdate }) => {
   return <Box sx={{ marginTop: { sm: "25vh" } }}>
     <form onSubmit={onSubmitFn} onReset={onResetFn}>
       <Grid container spacing={4} justifyContent="center">
-        <Grid item xs={8} sm={8}>
+        <Grid item xs={8} sm={8}  key={1}>
           <Container maxWidth="md" sx={{ display: "flex", flexDirection: "column" }}>
 
             <Stack direction="row" alignItems="center" spacing={2}>
@@ -180,24 +180,24 @@ export const GoodsForm: React.FC<GoodsFormProps> = ({ onAdd, goodsUpdate }) => {
 
           </Container>
         </Grid>
-        <Grid item xs={8} sm={5} >
+        <Grid item xs={8} sm={5} key={2}>
           <FormControl fullWidth required>
             <InputLabel id="select-category-id">קטגוריה</InputLabel>
             <Select labelId="select-category-id-1" label="קטגוריה"
               value={goods.category} onChange={handlerCategory}>
               <MenuItem value=''>None</MenuItem>
-              {goodsCategory.map(category => <MenuItem value={category}>{category}</MenuItem>)}
+              {goodsCategory.map(category => <MenuItem key={category} value={category}>{category}</MenuItem>)}
             </Select>
           </FormControl>
         </Grid>
-        <Grid item xs={8} sm={5} >
+        <Grid item xs={8} sm={5} key={3}>
           <TextField type="text" required fullWidth label="שם המוצר"
             helperText="הזן את שם המוצר" onChange={handlerName}
             value={goods.name}
           />
         </Grid>
 
-        <Grid item xs={8} sm={5} >
+        <Grid item xs={8} sm={5} key={4} >
           <TextField label="מחיר" fullWidth required
             type="number" onChange={handlerPrice}
             value={goods.price || ''}
@@ -209,34 +209,34 @@ export const GoodsForm: React.FC<GoodsFormProps> = ({ onAdd, goodsUpdate }) => {
               shrink: !!goodsUpdate || !!goods.price
             }} />
         </Grid>
-        <Grid item xs={8} sm={5} >
+        <Grid item xs={8} sm={5} key={5}>
           <TextField type="text" required fullWidth label="שם החברה"
             helperText="הזן את שם החברה" onChange={handlerCompany}
             value={goods.company}
           />
         </Grid>
-        <Grid item xs={8} sm={5} >
+        <Grid item xs={8} sm={5} key={6}>
           <FormControl fullWidth required>
             <InputLabel id="select-condition-id">קטגוריה</InputLabel>
             <Select labelId="select-condition-id" label="מצב"
               value={goods.condition} onChange={handlerCondition}>
               <MenuItem value=''>None</MenuItem>
-              {goodsCondition.map(condition => <MenuItem value={condition}>{condition}</MenuItem>)}
+              {goodsCondition.map(condition => <MenuItem key={condition} value={condition}>{condition}</MenuItem>)}
             </Select>
           </FormControl>
         </Grid>
 
-        <Grid item xs={8} sm={5} >
+        <Grid item xs={8} sm={5} key={7}>
           <FormControl fullWidth required>
             <InputLabel id="select-city-id">עיר</InputLabel>
             <Select labelId="select-city-id" label="עיר"
               value={goods.city} onChange={handlerCity}>
               <MenuItem value=''>None</MenuItem>
-              {cities.sort().map(city => <MenuItem value={city}>{city}</MenuItem>)}
+              {cities.sort().map(city => <MenuItem key={city} value={city}>{city}</MenuItem>)}
             </Select>
           </FormControl>
         </Grid>
-        <Grid item xs={8} sm={5} >
+        <Grid item xs={8} sm={5} key={8}>
           <TextField multiline type="text" required fullWidth label="תיאור"
             helperText="תאר את המוצר והוסף את מה שמגיע איתו" onChange={handlerDiscription}
             value={goods.discription}
@@ -247,7 +247,7 @@ export const GoodsForm: React.FC<GoodsFormProps> = ({ onAdd, goodsUpdate }) => {
 
 
 
-      <Box sx={{ marginTop: { xs: "10vh", sm: "5vh" }, textAlign: "center" }}>
+      <Box sx={{ marginTop: { xs: "10vh", sm: "5vh" }, textAlign: "center" }} key={9}>
         <div>
 
           <Modal

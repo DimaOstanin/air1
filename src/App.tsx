@@ -70,8 +70,9 @@ return <BrowserRouter>
             <Route path='logout' element={<Logout/>}/>
             <Route path='logout' element={<Logout/>}/>
             <Route path='create' element={<GoodsForm onAdd={(goodss) => {dispatch(goodsActions.addGoods(goodss));return true }} />}/>
-            <Route path='Generate' element={<Generation/>}/>
+            {/* <Route path='update/:id' element={<GoodsForm onAdd={(goodss) => {dispatch(goodsActions.addGoods(goodss));return true }} goodsUpdate   />}/> */}
             
+            <Route path='Generate' element={<Generation/>}/>
             <Route path='*' element={<NoFoundPAge />}/>
         </Route>
             

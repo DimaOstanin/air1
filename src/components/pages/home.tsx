@@ -7,7 +7,7 @@ export const Home: React.FC = () => {
   
   return (
     <div >
-      <Typography sx={{m:5, display:"flex",justifyContent:'center'}} variant="h3" >
+      <Typography key={1} sx={{m:5, display:"flex",justifyContent:'center'}} variant="h3" >
          ברוכים הבאים לאיירסופט 1 
       </Typography>
       <Typography sx={{m:5}} variant="body1">
