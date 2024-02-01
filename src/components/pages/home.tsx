@@ -11,8 +11,8 @@ export const Home: React.FC = () => {
          ברוכים הבאים לאיירסופט 1 
       </Typography>
       <Typography sx={{m:5}} variant="body1">
-      באתר שלנו תוכל להעמיד את כונני האיירסופט שלך למכירה ולמצוא אחד מתאים לרכישה    
-     </Typography>
+      באתר שלנו אתה יכול לשים את כלי האיירסופט שלך למכירה ולקנות מאחרים     
+      </Typography>
       <Profile/>
     </div>
     

@@ -13,7 +13,7 @@ export const Profile: React.FC = () => {
   return (
     <div>
         <Link to={'/create'}>
-        <Button variant="contained" >Create product</Button>
+        <Button variant="contained" sx={{m:5}}>ליצור מוצר</Button>
         </Link>
         {/* <GoodsListPerson goods={goods}/> */}
      

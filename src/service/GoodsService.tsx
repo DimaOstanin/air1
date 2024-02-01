@@ -2,7 +2,7 @@ import { GoodsType } from "../model/GoodsType"
 import { getElement, getRandomDate, getRandomNumber } from "../utils/random";
 import goodsConfig from "../config/goods-config.json";
 import { useSelector } from "react-redux";
-
+import imageF from '../image/pantherphotos9360401-scaled.jpg'
 export function createRandomGoods(): GoodsType {
     
 
@@ -14,7 +14,7 @@ export function createRandomGoods(): GoodsType {
     const category = getElement(goodsCategory); 
     const condition = getElement(goodsCondition);
     const price = getRandomNumber(minPrice, maxPrice);
-    const image = "https://t3.ftcdn.net/jpg/03/21/62/56/360_F_321625657_rauGwvaYjtbETuwxn9kpBWKDYrVUMdB4.jpg";
+    const image = imageF;
     const city = getElement(cities);
     const authorEmail = "spdima007@gmail.com";
     const goods: GoodsType = {

@@ -1,22 +1,19 @@
-import React, { ReactNode, useRef } from 'react';
+import React, { ReactNode } from 'react';
 import { GoodsType } from "../../model/GoodsType";
 import { Typography, Button, Card, CardActions, CardContent, CardMedia, Box, Divider, Modal, Alert } from '@mui/material';
-import { ThemeProvider, createTheme, styled } from '@mui/material/styles';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { createTheme } from '@mui/material/styles';
+import {  useNavigate, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { firestore } from '../../config/firebase-config'
-import { collection, getFirestore, getDocs, getDoc, setDoc, doc, deleteDoc, DocumentSnapshot } from 'firebase/firestore';
+import {  getDoc,  doc } from 'firebase/firestore';
 import { db } from '../../config/firebase-config';
-import { Image } from '@mui/icons-material';
-import { CompanyFirebase } from '../../service/CompanyFirebase';
+
 import { useDispatch, useSelector } from 'react-redux';
-import generationConfig from '../../config/generation-config.json';
 import { goodsActions } from "../../redux/goodsSlice";
 import { GoodsForm } from '../forms/GoodsForm';
 
 const style = {
-  overflow:'scroll',
-    height:'100%',
+  overflow: 'scroll',
+  height: '100%',
   position: 'absolute' as 'absolute',
   top: '50%',
   left: '50%',
@@ -97,8 +94,8 @@ export const ProductPage: React.FC = () => {
         <Box key={product.id} justifyContent="center" sx={{ width: '100%', maxWidth: '100%', maxHeight: '100%' }}>
           {authorButtons &&
             <Box >
-              <Button onClick={() => setOpenDeleteModal(true)} sx={{ marginRight: "10px" }} variant="contained">DELETE</Button>
-              <Button onClick={() => setOpenEditModal(true)} variant="contained" >edit</Button>
+              <Button  onClick={() => setOpenDeleteModal(true)} sx={{ marginRight: "10px" }} variant="contained">DELETE</Button>
+              <Button onClick={() => setOpenEditModal(true)} variant="contained" sx={{ m: 1 }}>edit</Button>
 
               <div>
                 <Modal
@@ -120,9 +117,9 @@ export const ProductPage: React.FC = () => {
                   onClose={() => setOpenEditModal(false)}
                   aria-labelledby="parent-modal-title"
                   aria-describedby="parent-modal-description"
-                  
+
                 >
-                  <Box sx={{ ...style, width:"80%"}}>
+                  <Box sx={{ ...style, width: "80%" }}>
                     <GoodsForm onAdd={function (product: any) {
                       dispatch(goodsActions.updateGoodsType(product));
                       return true;
@@ -166,23 +163,25 @@ export const ProductPage: React.FC = () => {
                 {product.discription}
               </Typography>
             </CardContent>
-            <Divider>  צור כשר</Divider>
 
-            <CardActions>
-              <Button size="large">צלצל</Button>
-              <Button size="large">What's Up</Button>
-              <Button size="large">Telegram</Button>
-            </CardActions>
+            {/* <Box> 
+              <Divider>  צור כשר</Divider>
 
-            <Divider>    שיטוף מוצר</Divider>
+              <CardActions>
+                <Button size="large">צלצל</Button>
+                <Button size="large">What's Up</Button>
+                <Button size="large">Telegram</Button>
+              </CardActions>
 
-            <CardActions>
+              <Divider>    שיטוף מוצר</Divider>
 
-              <Button size="large">Share</Button>
-              <Button size="large">What's Up</Button>
-              <Button size="large">Telegram</Button>
-            </CardActions>
+              <CardActions>
 
+                <Button size="large">Share</Button>
+                <Button size="large">What's Up</Button>
+                <Button size="large">Telegram</Button>
+              </CardActions>
+              </Box> */}
           </Card>
         </Box>)}
     </Box>
