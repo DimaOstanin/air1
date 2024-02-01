@@ -1,20 +1,21 @@
  
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Typography, Box } from "@mui/material";
 import { styled } from "@mui/material/styles";
-
-import { UploadForm } from '../forms/UploadForm';
+import { GoodsListPerson } from "../list/GoodsListPerson";
 import { Link } from "react-router-dom";
+import { GoodsType } from "../../model/GoodsType";
+import { useSelector } from "react-redux";
 
 export const Profile: React.FC = () => {
-  
-    
+   
 
   return (
-    <div >
+    <div>
         <Link to={'/create'}>
         <Button variant="contained" >Create product</Button>
         </Link>
+        {/* <GoodsListPerson goods={goods}/> */}
      
       
     </div>
@@ -23,7 +24,7 @@ export const Profile: React.FC = () => {
   );
 };
 
-// Define the interface for the props
+
 
 
 

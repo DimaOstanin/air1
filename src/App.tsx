@@ -25,7 +25,6 @@ import { GoodsForm } from './components/forms/GoodsForm';
 
 
 function App() {
-    console.log("React app run Succsesfull in port 3000")
   const dispatch = useDispatch<any>();
   const [routes, setRoutes] = useState<RouteType[]>([]);
   const authUser:string = useSelector<any,string>(state=>state.auth.authenticated );

@@ -66,7 +66,7 @@ export const GoodsList: React.FC<GoodsListProps> = ({ goods }) => {
 
     return (
         <Box >
-           <Typography variant="h4" sx={{ display: "flex", justifyContent: "center", marginTop: "-60px" }}> {filteredGoods.length} מודעות</Typography>
+           <Typography variant="h4" sx={{ display: "flex", justifyContent: "center", marginTop: "-20px" }}> {filteredGoods.length} מודעות</Typography>
             <Box>
                 {/* UI elements for the search, sorting, and city options */}
                 <TextField label="חיפוש לפי מילה מפתח" sx={{ marginRight: "10px", marginTop: "10px" }} value={search} onChange={handleSearchChange} />
